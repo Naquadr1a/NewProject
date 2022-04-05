@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class POClass {
     private WebDriverWait wait;
     private WebDriver driver;
-
     private String adress = "https://mail.ru";
     private String name = "firstsecond.name";
     private String password = "FirstSecond";
@@ -62,10 +61,11 @@ public class POClass {
     }
 
     public void WriteMessage(String message) {
+        String element;
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(writeMessage)));
         driver.findElement(By.xpath(writeMessage)).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(inputEmailAdress)));
-        String element = driver.findElement(By.xpath(email)).getText();
+        element = driver.findElement(By.xpath(email)).getText();
         driver.findElement(By.xpath(inputEmailAdress)).sendKeys(element);
         driver.findElement(By.xpath(inputTopicMessage)).sendKeys(topicMessage);
         driver.findElement(By.xpath(messageField)).sendKeys(message);

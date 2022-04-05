@@ -24,7 +24,8 @@ public class MailRuTest {
             poClass.WriteMessage("Text");
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             Thread.sleep(5000);
             driver.quit();
         }
