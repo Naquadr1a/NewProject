@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.logging.Logger;
 
 
 public class POClass {
@@ -29,6 +30,9 @@ public class POClass {
     public POClass(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+    }
+
+    public POClass() {
     }
 
     public  void enter() {
@@ -78,5 +82,10 @@ public class POClass {
 
     public String getPassword() {
         return password;
+    }
+
+    public void info(String info){
+        Logger log = Logger.getLogger(MailRuTest.class.getName());
+        log.info(info);
     }
 }

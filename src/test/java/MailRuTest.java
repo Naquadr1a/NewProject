@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -31,7 +32,14 @@ public class MailRuTest {
     }
 
     @AfterTest
-    public void afterTest() {
-        System.out.println("Done!");
+    public void logger() {
+        POClass poClass = new POClass();
+        poClass.info("Done!");
+    }
+
+    @BeforeTest
+    public void log() {
+        POClass poClass = new POClass();
+        poClass.info("Start");
     }
 }
