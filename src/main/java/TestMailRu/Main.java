@@ -20,17 +20,15 @@ public class Main {
         driver.manage().window().maximize();
         driver.get("https://mail.ru");
 
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[@class='resplash-btn resplash-btn_primary resplash-btn_big svelte-y47oj9']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='enter-mail-primary']")));
 
-        driver.findElement(By.xpath("//button[@class='resplash-btn resplash-btn_primary resplash-btn_big svelte-y47oj9']")).click();
-
-        Thread.sleep(3000);
+        driver.findElement(By.xpath("//button[@data-testid='enter-mail-primary']")).click();
 
         WebElement frameElement = driver.findElement(By.xpath("//iframe[@class='ag-popup__frame__layout__iframe']"));
 
         driver.switchTo().frame(frameElement);;
 
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@placeholder='Имя аккаунта']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Имя аккаунта']")));
 
         driver.findElement(By.xpath("//input[@placeholder='Имя аккаунта']")).sendKeys("firstsecond.name@mail.ru", Keys.ENTER);
 
@@ -46,11 +44,9 @@ public class Main {
 
         System.out.println(element1);
 
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='Написать письмо']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Написать письмо']")));
 
         driver.findElement(By.xpath("//span[text()='Написать письмо']")).click();
-
-        Thread.sleep(3000);
 
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@class='container--H9L5q size_s_compressed--2c-eV'][1]")));
 
@@ -60,11 +56,9 @@ public class Main {
 
         driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[1]/div[2]/div[3]/div[5]/div/div/div[2]/div[1]/div[2]")).sendKeys("Привет");
 
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='button2__txt'][1]")));
-
         driver.findElement(By.xpath("//span[@class='button2__txt'][1]")).click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         System.out.println("Done!");
 
