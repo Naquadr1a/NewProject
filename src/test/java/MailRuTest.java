@@ -1,45 +1,58 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class MailRuTest {
+        private WebDriver driver;
+        private String adress = "https://mail.ru";
+        private WebDriverWait wait;
+        private Logger log;
+        private Data data;
+        POClass poClass;
+        String message = "Message";
+        String topicMessage = "Topic message";
 
-    @Test
-    public static void test() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        POClass poClass = new POClass(driver, wait);
-        try {
-            poClass.page();
+        @BeforeSuite
+        public void beforeSuite(){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            poClass = new POClass(driver, wait);
+            log = Logger.getLogger(MailRuTest.class.getName());
+            data = new Data();
+            PageFactory.initElements(driver, poClass);
+        }
+        @BeforeTest
+        public void beforeTest(){
+            driver.manage().window().maximize();
+        }
+        @Test
+        public void test() throws Exception {
             poClass.enter();
             poClass.switchto();
-            poClass.login(poClass.getName(), poClass.getPassword());
+            poClass.login(data.getLogin(), data.getPass());
             poClass.switchback();
-            poClass.WriteMessage("Text");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            Thread.sleep(5000);
+            poClass.write(topicMessage, message);
+        }
+        @BeforeClass
+        public void beforeClass(){
+            driver.get(adress);
+        }
+        @AfterMethod
+        public  void log(){
+            log.info("Done!");
+        }
+        @AfterClass
+        public void close() throws InterruptedException {
+            Thread.sleep(3000);
             driver.quit();
         }
+
     }
 
-    @AfterTest
-    public void logger() {
-        POClass poClass = new POClass();
-        poClass.info("Done!");
-    }
-
-    @BeforeTest
-    public void log() {
-        POClass poClass = new POClass();
-        poClass.info("Start");
-    }
-}
