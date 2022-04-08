@@ -1,0 +1,1 @@
+{"uuid":"44dbacff-22f0-4bfb-b322-557c73df1a02","name":"MailRuTest.log","children":["85374083-5db9-4935-808b-c1dc3843e228"],"description":"","befores":[],"afters":[{"name":"log","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1649376181009,"stop":1649376181009}],"start":1649376181008,"stop":1649376181010}
